@@ -78,10 +78,10 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">アルバイト体験談記事</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center text-[var(--primary-green)]">アルバイト体験談記事</h1>
 
       {/* Article Form */}
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md mb-8">
+      <form onSubmit={handleSubmit} className="bg-green-50/50 p-6 rounded-lg shadow-md mb-8">
         <h2 className="text-2xl font-semibold mb-4">
           {editingArticleId ? '記事を編集' : '新しい記事を作成'}
         </h2>
@@ -92,7 +92,7 @@ export default function Home() {
           <input
             type="text"
             id="title"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-2 focus:ring-[var(--primary-green)]"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
@@ -105,7 +105,7 @@ export default function Home() {
           <textarea
             id="content"
             rows={5}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:ring-2 focus:ring-[var(--primary-green)]"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
@@ -114,7 +114,7 @@ export default function Home() {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-[var(--primary-green)] hover:opacity-90 text-white font-bold py-2 px-4 rounded focus:ring-2 focus:ring-[var(--primary-green)]"
           >
             {editingArticleId ? '更新' : '作成'}
           </button>
@@ -122,7 +122,7 @@ export default function Home() {
             <button
               type="button"
               onClick={handleCancelEdit}
-              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:ring-2 focus:ring-[var(--primary-green)]"
             >
               キャンセル
             </button>
@@ -138,19 +138,19 @@ export default function Home() {
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (
-              <div key={article.id} className="bg-white p-6 rounded-lg shadow-md">
+              <div key={article.id} className="bg-green-50/50 p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-bold mb-2">{article.title}</h3>
                 <p className="text-gray-700 mb-4">{article.content}</p>
                 <div className="flex justify-end space-x-2">
                   <button
                     onClick={() => handleEdit(article)}
-                    className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline text-sm"
+                    className="bg-green-200 hover:bg-green-300 text-green-800 font-bold py-1 px-3 rounded focus:ring-2 focus:ring-[var(--primary-green)] text-sm"
                   >
                     編集
                   </button>
                   <button
                     onClick={() => handleDelete(article.id)}
-                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline text-sm"
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded focus:ring-2 focus:ring-[var(--primary-green)] text-sm"
                   >
                     削除
                   </button>

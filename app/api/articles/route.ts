@@ -1,10 +1,8 @@
-import { NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
+import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/utils/supabase/server'
 
-export async function GET(request: Request) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+export async function GET(request: NextRequest) {
+  const supabase = await createClient()
 
   const { data: articles, error } = await supabase.from('articles').select('*')
 
@@ -15,13 +13,11 @@ export async function GET(request: Request) {
   return NextResponse.json(articles)
 }
 
-export async function POST(request: Request) {
-  const cookieStore = cookies()
-  const supabase = createClient(cookieStore)
+export async function POST(request: NextRequest) {
+  const supabase = await createClient()
   const { title, content } = await request.json()
 
   const { data, error } = await supabase.from('articles').insert([{ title, content }]).select()
-
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
